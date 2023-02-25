@@ -19,11 +19,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-be8@@7u%jy2g2fec5#@h!0!)r3g$9)ep&sgvk6@q!v2ea6zdq3'
+SECRET_KEY = 'zycj4^7p8b=#w-kw_7w#4vp0#ux%8r6^tr^_)blgw4yi&-08^e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_SPOTIFY_KEY = '0d12ed74ee914c0daaed0e654751384a'
@@ -56,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
+    'profiles',
 ]
 
 MIDDLEWARE = [
