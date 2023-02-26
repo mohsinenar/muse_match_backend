@@ -23,6 +23,6 @@ class ArtistAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(models.Song)
+@admin.register(models.Track)
 class SongAdmin(admin.ModelAdmin):
     pass

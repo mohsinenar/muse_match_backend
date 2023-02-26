@@ -31,9 +31,25 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.spotify.SpotifyOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-top-read', 'user-library-read']
+SOCIAL_AUTH_SPOTIFY_SCOPE = [
+    "user-read-playback-state",
+    "user-modify-playback-state",
+    "user-read-currently-playing",
+    "playlist-read-private",
+    "playlist-read-collaborative",
+    "playlist-modify-private",
+    "playlist-modify-public",
+    "user-follow-modify",
+    "user-follow-read",
+    "user-read-playback-position",
+    "user-top-read",
+    "user-read-recently-played",
+    "user-library-modify",
+    "user-library-read",
+    "user-read-email",
+    "user-read-private"
+]
 LOGIN_REDIRECT_URL = '/home'
-
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',
@@ -44,7 +60,9 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
+    'profiles.pipelines.create_pofile',
 )
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -57,7 +75,16 @@ INSTALLED_APPS = [
     'social_django',
     'profiles',
     'data_collector',
+    'rest_framework',
+    'rest_framework.authtoken'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
