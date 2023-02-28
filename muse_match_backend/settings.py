@@ -68,6 +68,7 @@ SOCIAL_AUTH_PIPELINE = (
 INSTALLED_APPS = [
     'daphne',
     'channels',
+    'graphene_subscriptions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,6 +83,12 @@ INSTALLED_APPS = [
     'graphene_django'
 ]
 
+# your_project/settings.py
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 ASGI_APPLICATION = "muse_match_backend.asgi.application"
 
 GRAPHENE = {
