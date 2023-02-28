@@ -24,6 +24,30 @@ class UserProfile(models.Model):
         return social.extra_data['access_token']
 
 
+class ProfileView(models.Model):
+    viewer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='views')
+    viewed_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='viewed')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Like(models.Model):
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='likes_given')
+    liked_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='likes_received')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Pass(models.Model):
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='passes_given')
+    passed_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='passes_received')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Match(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='matches')
+    matched_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='matched_with')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 class MusicGenre(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True, null=True)

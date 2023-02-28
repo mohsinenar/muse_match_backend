@@ -8,6 +8,21 @@ class UserProfileAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(models.Like)
+class LikeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.Pass)
+class PassAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.Match)
+class MatchAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(models.MusicGenre)
 class MusicGenreAdmin(admin.ModelAdmin):
     pass
