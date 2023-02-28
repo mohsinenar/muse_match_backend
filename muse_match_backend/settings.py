@@ -66,6 +66,8 @@ SOCIAL_AUTH_PIPELINE = (
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,8 +78,15 @@ INSTALLED_APPS = [
     'profiles',
     'data_collector',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'graphene_django'
 ]
+
+ASGI_APPLICATION = "muse_match_backend.asgi.application"
+
+GRAPHENE = {
+    "SCHEMA": "muse_match_backend.api.schema"
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

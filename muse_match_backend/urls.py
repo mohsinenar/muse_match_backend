@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from muse_match_backend import views
+from muse_match_backend.views import PrivateGraphQLView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('social/', include('social_django.urls')),
     path('home', views.index, name='index'),
+    path("graphql", PrivateGraphQLView.as_view()),
 ]
