@@ -1,4 +1,4 @@
-"""muse_match_backend URL Configuration
+"""muse_match URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from muse_match_backend import views
-from muse_match_backend.views import PrivateGraphQLView
+from muse_match import views
+from muse_match.views import PrivateGraphQLView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -13,10 +13,10 @@ def index(request):
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from graphene_django.views import GraphQLView
-from muse_match_backend.api import schema
+from muse_match.api import schema
 
 
-class PrivateGraphQLView(GraphQLView, LoginRequiredMixin):
+class PrivateGraphQLView(LoginRequiredMixin, GraphQLView):
     @classmethod
     def as_view(cls, *args, **kwargs):
         view = super().as_view(*args, schema=schema, graphiql=True, **kwargs)

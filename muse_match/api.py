@@ -5,6 +5,9 @@ from rx import Observable
 class Query(graphene.ObjectType):
     hello = graphene.String(default_value="Hi!")
 
+    def resolve_hello(self, info):
+        return info.context.user
+
 
 import graphene
 from rx import Observable
@@ -18,7 +21,7 @@ class Subscription(graphene.ObjectType):
 
     def resolve_hello(root, info):
         return Observable.interval(1000) \
-            .map(lambda i: f"{i} hello world!")
+            .map(lambda i: type())
 
     def resolve_user_profile_created(root, info):
         return root.filter(
