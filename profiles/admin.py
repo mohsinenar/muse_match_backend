@@ -41,3 +41,8 @@ class ArtistAdmin(admin.ModelAdmin):
 @admin.register(models.Track)
 class SongAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.ImageModel)
+class ImageModelAdmin(admin.ModelAdmin):
+    pass

@@ -3,3 +3,6 @@
 
 <h1>Latest Releases</h1>
 <p>We care about you, but we don't have anything done yet.</p>
+{% load static %}
+<img src="{% static 'profiles/8aaa286c-2f70-4ca1-9990-32ca7b7c6fd2.png' %}" alt="My image">
+<img src="{{ user_profile.profile_picture.url }}" alt="{{ user_profile.user.username }}'s profile picture">

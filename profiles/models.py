@@ -1,11 +1,19 @@
 from django.contrib.auth.models import User
 from django.db import models
 from social_django.utils import load_strategy
+import uuid
+import os
 
 GENDER_CHOICES = (
     ('M', 'Male'),
     ('F', 'Female'),
 )
+
+
+def get_file_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('profile_pictures', filename)
 
 
 class UserProfile(models.Model):
@@ -40,7 +48,7 @@ class UserProfile(models.Model):
 
 
 class ImageModel(models.Model):
-    image = models.ImageField(upload_to='img', null=True)
+    image = models.ImageField(upload_to=get_file_path, null=True)
     profile = models.ForeignKey(UserProfile, related_name="images", on_delete=models.CASCADE)
 
 
