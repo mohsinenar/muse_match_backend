@@ -1,9 +1,10 @@
 import graphene
+
 from profiles.apis import authenticated
 
 
-class Query(graphene.ObjectType):
-    hello = graphene.String(default_value="Hi!")
+class Query(authenticated.Query):
+    pass
 
 
 class Subscription(authenticated.Subscription, graphene.ObjectType):

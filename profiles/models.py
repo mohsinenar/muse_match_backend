@@ -12,6 +12,21 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     looking_for = models.CharField(max_length=6, choices=GENDER_CHOICES)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    age = models.PositiveIntegerField(default=18)
+
+    # location = models.CharField(max_length=255, null=True, blank=True)
+    # ethnicity = models.CharField(max_length=255, null=True, blank=True)
+    # religion = models.CharField(max_length=255, null=True, blank=True)
+    # education_level = models.CharField(max_length=255, null=True, blank=True)
+    # occupation = models.CharField(max_length=255, null=True, blank=True)
+    # height = models.PositiveIntegerField(null=True, blank=True)
+    # body_type = models.CharField(max_length=255, null=True, blank=True)
+    # interests = models.TextField(null=True, blank=True)
+    # relationship_status = models.CharField(max_length=255, null=True, blank=True)
+    # sexual_orientation = models.CharField(max_length=255, null=True, blank=True)
+    # languages_spoken = models.CharField(max_length=255, null=True, blank=True)
+    # smoking_habits = models.CharField(max_length=255, null=True, blank=True)
+    # drinking_habits = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -22,6 +37,11 @@ class UserProfile(models.Model):
         strategy = load_strategy()
         social.refresh_token(strategy)
         return social.extra_data['access_token']
+
+
+class ImageModel(models.Model):
+    image = models.ImageField(upload_to='img', null=True)
+    profile = models.ForeignKey(UserProfile, related_name="images", on_delete=models.CASCADE)
 
 
 class ProfileView(models.Model):
