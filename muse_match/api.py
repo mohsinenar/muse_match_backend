@@ -11,4 +11,4 @@ class Subscription(authenticated.Subscription, graphene.ObjectType):
     pass
 
 
-schema = graphene.Schema(query=Query, subscription=Subscription)
+schema = graphene.Schema(query=Query, subscription=Subscription, mutation=authenticated.Mutation)

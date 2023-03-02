@@ -5,12 +5,28 @@ from profiles import models
 from profiles import types
 
 
+def get_user_from_context(info):
+    return models.UserProfile.objects.get(user=info.context.user)
+
+
 class Query(graphene.ObjectType):
     my_profile = graphene.Field(types.UserProfileType)
 
     def resolve_my_profile(self, info, **kwargs):
-        user = models.UserProfile.objects.get(user=info.context.user)
-        return user
+        return get_user_from_context(info)
+
+
+class DeleteProfileImageMutation(graphene.Mutation):
+    class Arguments:
+        ids = graphene.List(graphene.Int, required=True)
+
+    success = graphene.Boolean()
+
+    @classmethod
+    def mutate(cls, root, info, ids: list[int]):
+        profile = get_user_from_context(info)
+        profile.images.filter(id__in=ids).delete()
+        return DeleteProfileImageMutation(success=True)
 
 
 class UpdateMyProfileMutation(graphene.Mutation):
@@ -25,7 +41,7 @@ class UpdateMyProfileMutation(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, name):
-        profile = models.UserProfile.objects.get(user=info.context.user)
+        profile = get_user_from_context(info)
         profile.name = name
         profile.save()
         return UpdateMyProfileMutation(profile=profile)
@@ -40,3 +56,7 @@ class Subscription(graphene.ObjectType):
             event.operation == CREATED and
             isinstance(event.instance, models.Match)
         ).map(lambda event: event.instance)
+
+
+class Mutation(graphene.ObjectType):
+    delete_user_image = DeleteProfileImageMutation.Field(description="Delete user mutation")
