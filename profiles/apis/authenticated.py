@@ -48,14 +48,10 @@ class UpdateMyProfileMutation(graphene.Mutation):
 
 
 class Subscription(graphene.ObjectType):
-    my_matches = graphene.Field(types.MatchType)
+    my_matches = graphene.String()
 
     def resolve_my_matches(root, info):
-        return root.filter(
-            lambda event:
-            event.operation == CREATED and
-            isinstance(event.instance, models.Match)
-        ).map(lambda event: event.instance)
+        return ""
 
 
 class Mutation(graphene.ObjectType):

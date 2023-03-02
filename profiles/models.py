@@ -70,12 +70,6 @@ class Pass(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-class Match(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='matches')
-    matched_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='matched_with')
-    created_at = models.DateTimeField(auto_now_add=True)
-
-
 class MusicGenre(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True, null=True)

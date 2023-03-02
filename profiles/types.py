@@ -19,12 +19,3 @@ class UserProfileType(DjangoObjectType):
         model = models.UserProfile
 
 
-class MatchType(DjangoObjectType):
-    profile = graphene.Field(UserProfileType)
-
-    class Meta:
-        model = models.Match
-        fields = ("id", "created_at")
-
-    def resolve_profile(self, info):
-        return self.matched_user

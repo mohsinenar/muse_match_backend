@@ -18,11 +18,6 @@ class PassAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(models.Match)
-class MatchAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(models.MusicGenre)
 class MusicGenreAdmin(admin.ModelAdmin):
     pass
